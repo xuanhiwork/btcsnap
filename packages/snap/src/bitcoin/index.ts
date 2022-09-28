@@ -74,11 +74,13 @@ export class BtcTx {
     extractPsbtJson() {
         /**
          * return {
+         *    network: string 
          *    from: [address] // derive from psbt bip32 field,
          *    to: [address, address] // derive from psbt output field 
          *    value: caculate from output
          *    fee: get from psbt getFee
          *    changeAddress?: show if exisit
+         *    
          * }
          */
         return {
