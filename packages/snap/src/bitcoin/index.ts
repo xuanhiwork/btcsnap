@@ -54,6 +54,12 @@ export class BtcTx {
     }
 
     validateTx(accountSigner: AccountSigner) {
+        // 1. all input should have noneWitnessUtxo field
+        // 2. each input path should be consist with the network value in snap
+        // 3. all the ouput address should be consist with the network value in snap
+        // 4. should verify fee is not large
+        // 5. should verify change address.
+        // 6. verify not big fee
         let result = true;
         this.tx.txInputs.forEach((each, index) => {
             result = this.tx.inputHasHDKey(index, accountSigner)
@@ -66,6 +72,15 @@ export class BtcTx {
     }
 
     extractPsbtJson() {
+        /**
+         * return {
+         *    from: [address] // derive from psbt bip32 field,
+         *    to: [address, address] // derive from psbt output field 
+         *    value: caculate from output
+         *    fee: get from psbt getFee
+         *    changeAddress?: show if exisit
+         * }
+         */
         return {
             inputs: this.tx.txInputs.map(each => ({
                 prevTxId: each.hash.toString('hex'),
