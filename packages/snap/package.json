@@ -34,7 +34,6 @@
   },
   "dependencies": {
     "@metamask/snaps-cli": "^0.18.0",
-    "bip32": "^2.0.6",
     "bitcoinjs-lib": "^6.0.1"
   },
   "publishConfig": {
